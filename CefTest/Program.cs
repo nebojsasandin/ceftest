@@ -43,7 +43,7 @@ namespace CefTest
                     browser.WaitForNavigationAsync().Wait();
 
                     //this line fails with error (inner exception): Request BrowserId : 1 not found it's likely the browser is already closed
-                    var rez = browser.GetMainFrame().EvaluateScriptAsync<string>("document.querySelector(\"button[aria-haspopup='menu']\").innerText").Result;
+                    var rez = browser.GetMainFrame().EvaluateScriptAsync<string>("return document.querySelector(\"button[aria-haspopup='menu']\").innerText").Result;
                 }
                 catch (Exception ex)
                 {

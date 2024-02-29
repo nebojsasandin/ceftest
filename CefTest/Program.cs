@@ -34,7 +34,7 @@ namespace CefTest
         private static void RunCefTest()
         {
             //important: must navigate to Google first...., if we leave about:blank, then all of this will work fine, it needs to navigate from one google page to the other.
-            using (var browser = new ChromiumWebBrowser("https://www.google.com/"))
+            using (var browser = new ChromiumWebBrowser("https://www.google.com/"))// https://www.google.com/"))
             {
                 try
                 {
@@ -43,7 +43,7 @@ namespace CefTest
                     browser.WaitForNavigationAsync().Wait();
 
                     //this line fails with error (inner exception): Request BrowserId : 1 not found it's likely the browser is already closed
-                    var rez = browser.GetMainFrame().EvaluateScriptAsync<string>("return document.querySelector(\"button[aria-haspopup='menu']\").innerText").Result;
+                    var rez = browser.GetMainFrame().EvaluateScriptAsync<string>("(function() {  return document.querySelector(\"button[aria-haspopup='menu']\").innerText; })();").Result;
                 }
                 catch (Exception ex)
                 {
